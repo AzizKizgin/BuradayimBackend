@@ -114,8 +114,12 @@ namespace BuradayimBackend.Extensions
             services.AddScoped<IPostRepository, PostRepository>();
         }
 
-        public static void ConfigureServices(this IServiceCollection services){
+        public static void ConfigureServices(this IServiceCollection services)
+        {
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IPostService, PostManager>();
+            services.AddScoped<IServiceManager, ServiceManager>();
         }
     }
 }
