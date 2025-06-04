@@ -24,5 +24,18 @@ namespace BuradayimBackend.Repository
             .Include(u => u.Posts)
             .FirstOrDefaultAsync();
         }
+
+        public async Task<User> GetUserByEmailAsync(string email, bool trackChanges)
+        {
+            return await FindByCondition(u => u.Email == email, trackChanges)
+            .Include(u => u.Posts)
+            .FirstOrDefaultAsync();
+        }
+
+        public async Task<List<User>> SearchUsersByName(string username, bool trackChanges)
+        {
+            return await FindByCondition(u => u.UserName.ToLower().Contains(username.ToLower()), trackChanges)
+                .ToListAsync();
+        }
     }
 }
