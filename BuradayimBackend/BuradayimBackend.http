@@ -1,0 +1,6 @@
+@BuradayimBackend_HostAddress = http://localhost:5027
+
+GET {{BuradayimBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
