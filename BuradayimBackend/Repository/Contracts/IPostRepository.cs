@@ -10,6 +10,7 @@ namespace BuradayimBackend.Repository.Contracts
     {
         Task<List<Post>> GetAllPostsAsync(bool trackChanges);
         Task<Post> GetPostAsync(string id, bool trackChanges);
+        Task<List<Post>> GetPostsByUserId(string userId, bool trackChanges);
         void CreatePost(Post post);
         void UpdatePost(Post post);
         void DeletePost(Post post);

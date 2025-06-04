@@ -40,5 +40,11 @@ namespace BuradayimBackend.Repository
         {
             Update(post);
         }
+
+        public async Task<List<Post>> GetPostsByUserId(string userId, bool trackChanges)
+        {
+            return await FindByCondition(p => p.UserId == userId,trackChanges)
+            .ToListAsync();
+        }
     }
 }
