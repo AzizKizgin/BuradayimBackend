@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using BuradayimBackend.Data;
 using BuradayimBackend.Models;
+using BuradayimBackend.Repository;
+using BuradayimBackend.Repository.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -100,5 +102,14 @@ namespace BuradayimBackend.Extensions
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
         }
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+
+        public static void ConfigureRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IPostRepository, PostRepository>();
+         }
     }
 }
