@@ -12,6 +12,9 @@ builder.Services.ConfigureSqlContext();
 builder.Services.ConfigureIdentity(builder.Configuration);
 builder.Services.ConfigureSwaggerGen();
 builder.Services.ConfigureControllers();
+builder.Services.ConfigureRepositories();
+builder.Services.ConfigureRepositoryManager();
+builder.Services.ConfigureServices();
 
 var app = builder.Build();
 

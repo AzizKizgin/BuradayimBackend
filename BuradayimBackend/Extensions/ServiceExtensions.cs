@@ -7,6 +7,8 @@ using BuradayimBackend.Data;
 using BuradayimBackend.Models;
 using BuradayimBackend.Repository;
 using BuradayimBackend.Repository.Contracts;
+using BuradayimBackend.Service;
+using BuradayimBackend.Service.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -110,6 +112,10 @@ namespace BuradayimBackend.Extensions
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IPostRepository, PostRepository>();
-         }
+        }
+
+        public static void ConfigureServices(this IServiceCollection services){
+            services.AddScoped<ITokenService, TokenService>();
+        }
     }
 }
