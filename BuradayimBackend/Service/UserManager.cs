@@ -43,6 +43,7 @@ namespace BuradayimBackend.Service
         {
             var user = await _manager.User.GetUserAsync(id, true) ?? throw new Exception("User not found");
             await _userManager.DeleteAsync(user);
+            await _manager.SaveAsync();
         }
 
         public string GenerateToken(User user)
@@ -96,6 +97,7 @@ namespace BuradayimBackend.Service
             user.About = updateUserInfo.About;
             user.ProfilePicture = Convert.FromBase64String(updateUserInfo.ProfilePicture);
             await _userManager.UpdateAsync(user);
+            await _manager.SaveAsync();
             return _mapper.Map<UserDto>(user);
         }
     }
