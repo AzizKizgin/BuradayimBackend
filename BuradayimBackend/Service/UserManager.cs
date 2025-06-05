@@ -65,7 +65,9 @@ namespace BuradayimBackend.Service
             {
                 throw new Exception("User not couldn't login");
             }
-            return _mapper.Map<UserDto>(user);
+            var userDto = _mapper.Map<UserDto>(user);
+            userDto.Token = _tokenService.GenerateToken(user);
+            return userDto;
         }
 
         public async Task Logout()
