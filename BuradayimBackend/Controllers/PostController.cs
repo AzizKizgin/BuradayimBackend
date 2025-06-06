@@ -71,7 +71,7 @@ namespace BuradayimBackend.Controllers
 
         }
 
-        [HttpPost("{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetPost([FromRoute] string id)
         {
             try
@@ -86,7 +86,7 @@ namespace BuradayimBackend.Controllers
         }
 
 
-        [HttpPost("user/{id}")]
+        [HttpGet("user/{id}")]
         public async Task<IActionResult> GetUserPost([FromRoute] string id)
         {
             try
@@ -107,6 +107,20 @@ namespace BuradayimBackend.Controllers
             {
                 var post = await _serviceManager.PostService.UpdatePost(id, updatePostDto);
                 return Ok(post);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPosts()
+        {
+            try
+            {
+                var posts = await _serviceManager.PostService.GetPosts();
+                return Ok(posts);
             }
             catch (Exception e)
             {
