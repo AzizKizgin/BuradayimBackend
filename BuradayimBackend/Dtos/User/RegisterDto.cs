@@ -19,9 +19,6 @@ namespace BuradayimBackend.Dtos.User
 
         [Required (ErrorMessage = "Password is required")]
         public string Password { get; init; }
-
-        [Required (ErrorMessage = "Confirm password is required")]
-        public string ConfirmPassword { get; init; }
         public DateTime CreatedAt { get; init; } = DateTime.Now;
     }
 }

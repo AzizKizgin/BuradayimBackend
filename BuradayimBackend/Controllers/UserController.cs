@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BuradayimBackend.Dtos;
 using BuradayimBackend.Dtos.User;
 using BuradayimBackend.Service.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -66,7 +67,8 @@ namespace BuradayimBackend.Controllers
             try
             {
                 await _serviceManager.UserService.Logout();
-                return Ok();
+                var message = new SuccessMessage { Message = "Logout successful" };
+                return Ok(message);
             }
             catch (Exception e)
             {
@@ -100,7 +102,9 @@ namespace BuradayimBackend.Controllers
                     return Unauthorized("User not found");
                 }
                 await _serviceManager.UserService.DeleteUser(userId);
-                return Ok();
+                
+                var message = new SuccessMessage { Message = "User deleted" };
+                return Ok(message);
             }
             catch (Exception e)
             {
@@ -120,7 +124,8 @@ namespace BuradayimBackend.Controllers
                     return Unauthorized("User not found");
                 }
                 await _serviceManager.UserService.ChangePassword(userId, changePasswordDto);
-                return Ok();
+                var message = new SuccessMessage { Message = "Password Changed" };
+                return Ok(message);
             }
             catch (Exception e)
             {
@@ -140,7 +145,8 @@ namespace BuradayimBackend.Controllers
                     return Unauthorized("User not found");
                 }
                 await _serviceManager.UserService.UpdateUser(userId, updateUserDto);
-                return Ok();
+                var message = new SuccessMessage { Message = "User Updated" };
+                return Ok(message);
             }
             catch (Exception e)
             {

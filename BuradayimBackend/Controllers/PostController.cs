@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using BuradayimBackend.Dtos;
 using BuradayimBackend.Dtos.Post;
 using BuradayimBackend.Service.Contracts;
 using Microsoft.AspNetCore.Authorization;
@@ -60,7 +61,8 @@ namespace BuradayimBackend.Controllers
                     return Forbid();
                 }
                 await _serviceManager.PostService.DeletePost(post.Id);
-                return Ok();
+                var message = new SuccessMessage { Message = "Post Deleted" };
+                return Ok(message);
             }
             catch (Exception e)
             {
